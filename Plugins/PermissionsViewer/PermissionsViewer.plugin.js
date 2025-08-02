@@ -391,6 +391,7 @@ function rgbToAlpha(color, alpha) {
 // src/plugins/PermissionsViewer/index.ts
 var { ContextMenu, DOM, Utils, Webpack, UI, ReactUtils } = BdApi;
 var GuildStore = Webpack.getStore("GuildStore");
+var GuildRoleStore = Webpack.getStore("GuildRoleStore");
 var SelectedGuildStore = Webpack.getStore("SelectedGuildStore");
 var MemberStore = Webpack.getStore("GuildMemberStore");
 var UserStore = Webpack.getStore("UserStore");
@@ -398,7 +399,7 @@ var DiscordPermissions = Webpack.getModule((m) => m.ADD_REACTIONS, { searchExpor
 var AvatarDefaults = Webpack.getByKeys("DEFAULT_AVATARS") ?? { DEFAULT_AVATARS: ["/assets/a0180771ce23344c2a95.png", "/assets/ca24969f2fd7a9fb03d5.png", "/assets/974be2a933143742e8b1.png", "/assets/999edf6459b7dacdcadf.png", "/assets/887bc8fac6c9878f058a.png", "/assets/1256b1e634d7274dd430.png"] };
 var ElectronModule = BdApi.Webpack.getByKeys("setBadge");
 var intlModule = BdApi.Webpack.getByKeys("intl");
-var getRoles = (guild) => guild?.roles ?? GuildStore?.getRoles(guild?.id);
+var getRoles = (guild) => guild?.roles ?? GuildRoleStore?.getRolesSnapshot(guild?.id);
 var getHashString = (hash) => intlModule?.intl.string(hash);
 var getPermString = (perm) => intlModule?.intl.string(intlModule.t[PermissionStringMap[perm]]) ?? perm.toString();
 var PermissionStringMap = {
