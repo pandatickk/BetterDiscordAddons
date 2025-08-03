@@ -41,7 +41,7 @@ const ElectronModule = BdApi.Webpack.getByKeys<{copy(s: string): void}>("setBadg
 const intlModule = BdApi.Webpack.getByKeys<{intl: {string(hash: string): string;}; t: Record<string, string>;}>("intl");
 
 
-const getRoles = (guild: {roles?: Record<string, GuildRole>; id: string}): Record<string, GuildRole> | undefined => guild?.roles ?? GuildRoleStore?.getRoles(guild?.id);
+const getRoles = (guild: {roles?: Record<string, GuildRole>; id: string}): Record<string, GuildRole> | undefined => guild?.roles ?? GuildRoleStore?.getRolesSnapshot(guild?.id);
 const getHashString = (hash: string) => intlModule?.intl.string(hash);
 const getPermString = (perm: keyof IDiscordPermissions) => intlModule?.intl.string(intlModule.t[PermissionStringMap[perm]]) ?? perm.toString();
 
